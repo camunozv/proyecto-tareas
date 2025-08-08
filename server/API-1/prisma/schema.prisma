@@ -17,6 +17,12 @@ datasource db {
 model Task {
   id Int @id @default(autoincrement())
   taskName String 
-  taskText String
+  taskText String      
+  status Values 
   creationDate DateTime @default(now())
+}
+
+enum Values {
+  DONE
+  PENDING
 }
