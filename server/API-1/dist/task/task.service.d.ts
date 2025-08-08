@@ -8,34 +8,29 @@ export declare class TaskService {
         taskName: string;
         taskText: string;
         creationDate: Date;
-        dueDate: Date;
     }>;
     findAll(): Promise<{
         id: number;
         taskName: string;
         taskText: string;
         creationDate: Date;
-        dueDate: Date;
     }[]>;
     findOne(id: number): Promise<{
         id: number;
         taskName: string;
         taskText: string;
         creationDate: Date;
-        dueDate: Date;
     } | null>;
     update(id: number, updateTaskDto: Prisma.TaskUpdateInput): Promise<{
         id: number;
         taskName: string;
         taskText: string;
         creationDate: Date;
-        dueDate: Date;
     }>;
     remove(id: number): Promise<{
         id: number;
         taskName: string;
         taskText: string;
         creationDate: Date;
-        dueDate: Date;
     }>;
 }

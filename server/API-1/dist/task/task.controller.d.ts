@@ -4,38 +4,33 @@ export declare class TaskController {
     private readonly taskService;
     constructor(taskService: TaskService);
     create(createTaskDto: Prisma.TaskCreateInput): Promise<{
+        id: number;
         taskName: string;
         taskText: string;
         creationDate: Date;
-        dueDate: Date;
-        id: number;
     }>;
     findAll(): Promise<{
+        id: number;
         taskName: string;
         taskText: string;
         creationDate: Date;
-        dueDate: Date;
-        id: number;
     }[]>;
     findOne(id: string): Promise<{
+        id: number;
         taskName: string;
         taskText: string;
         creationDate: Date;
-        dueDate: Date;
-        id: number;
     } | null>;
     update(id: string, updateTaskDto: Prisma.TaskUpdateInput): Promise<{
+        id: number;
         taskName: string;
         taskText: string;
         creationDate: Date;
-        dueDate: Date;
-        id: number;
     }>;
     remove(id: string): Promise<{
+        id: number;
         taskName: string;
         taskText: string;
         creationDate: Date;
-        dueDate: Date;
-        id: number;
     }>;
 }
