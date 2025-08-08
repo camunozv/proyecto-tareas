@@ -10,7 +10,6 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const users_module_1 = require("./users/users.module");
 const database_module_1 = require("./database/database.module");
 const task_module_1 = require("./task/task.module");
 const throttler_1 = require("@nestjs/throttler");
@@ -21,13 +20,18 @@ exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            users_module_1.UsersModule,
             database_module_1.DatabaseModule,
             task_module_1.TaskModule,
             throttler_1.ThrottlerModule.forRoot([{
-                    ttl: 60000,
+                    name: "short",
+                    ttl: 1000,
                     limit: 3,
-                }])
+                }, {
+                    name: "long",
+                    ttl: 60000,
+                    limit: 100
+                }
+            ])
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, {

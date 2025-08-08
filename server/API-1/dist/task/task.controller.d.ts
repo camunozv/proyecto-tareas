@@ -4,33 +4,38 @@ export declare class TaskController {
     private readonly taskService;
     constructor(taskService: TaskService);
     create(createTaskDto: Prisma.TaskCreateInput): Promise<{
-        id: number;
         taskName: string;
         taskText: string;
+        status: import("generated/prisma").$Enums.Values;
         creationDate: Date;
+        id: number;
     }>;
     findAll(): Promise<{
-        id: number;
         taskName: string;
         taskText: string;
+        status: import("generated/prisma").$Enums.Values;
         creationDate: Date;
+        id: number;
     }[]>;
     findOne(id: string): Promise<{
-        id: number;
         taskName: string;
         taskText: string;
+        status: import("generated/prisma").$Enums.Values;
         creationDate: Date;
+        id: number;
     } | null>;
     update(id: string, updateTaskDto: Prisma.TaskUpdateInput): Promise<{
-        id: number;
         taskName: string;
         taskText: string;
+        status: import("generated/prisma").$Enums.Values;
         creationDate: Date;
+        id: number;
     }>;
     remove(id: string): Promise<{
-        id: number;
         taskName: string;
         taskText: string;
+        status: import("generated/prisma").$Enums.Values;
         creationDate: Date;
+        id: number;
     }>;
 }

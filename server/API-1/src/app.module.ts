@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
 import { TaskModule } from './task/task.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
@@ -9,7 +8,6 @@ import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
-    UsersModule, 
     DatabaseModule, 
     TaskModule,
     ThrottlerModule.forRoot([{
