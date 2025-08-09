@@ -1,56 +1,15 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:task_manager_v1/home_page.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
-        title: 'Namer App',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-        ),
-        home: MyHomePage(),
-      ),
-    );
-  }
-}
-
-class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
-
-  void getNext() {
-    current = WordPair.random();
-    notifyListeners();
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-
-    return Scaffold(
-      body: Column(
-        children: [
-          Text('A random idea to win lots of money:'),
-          Text(appState.current.asLowerCase),
-          ElevatedButton(
-            onPressed: () {
-              appState.getNext();
-            },
-            child: Text("Next"),
-          ),
-        ],
-      ),
+    return MaterialApp(
+      home: HomePage(),
     );
   }
 }
