@@ -16,10 +16,32 @@ class _HomePageState extends State<HomePage> {
 
   List<dynamic> items = [];
 
-  void checkBoxChanged(int index) {
+  @override
+  void initState() {
+    super.initState();
+    fetchTasks(); // Automatically fetch tasks when screen loads
+  }
+
+  Future<void> checkBoxChanged(int index, int id) async {
+    var url = Uri.parse(
+      "https://proyecto-tareas-rbqt.onrender.com/proyecto-tareas/task/$id",
+    );
+
     setState(() {
       items[index]['status'] = !items[index]['status'];
     });
+
+    final headers = {'Content-Type': 'application/json'};
+    final body = json.encode({'status': items[index]['status']});
+
+    var response = await http.patch(url, headers: headers, body: body);
+
+    if (response.statusCode == 200) {
+      print('Data updated U');
+    } else {
+      print(response.statusCode);
+      print("No data added");
+    }
   }
 
   Future<void> deleteTask(int index, int id) async {
@@ -34,6 +56,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         items.removeAt(index);
       });
+      print("Data deleted D");
     } else {
       print("No task deleted");
     }
@@ -73,10 +96,8 @@ class _HomePageState extends State<HomePage> {
     String userInput = _controller.text;
 
     final headers = {'Content-Type': 'application/json'};
-    final body = json.encode({'taskName': '$userInput', 'taskText': ''});
+    final body = json.encode({'taskName': userInput, 'taskText': ''});
     var response = await http.post(url, headers: headers, body: body);
-
-    print(userInput);
 
     if (response.statusCode == 201) {
       setState(() {
@@ -106,7 +127,7 @@ class _HomePageState extends State<HomePage> {
           return TodoList(
             taskName: items[index]['taskName'],
             taskState: items[index]['status'],
-            onChanged: (value) => checkBoxChanged(index),
+            onChanged: (value) => checkBoxChanged(index, items[index]['id']),
             deleteFunction: (context) => deleteTask(index, items[index]['id']),
           );
         },
