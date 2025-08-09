@@ -18,11 +18,6 @@ model Task {
   id Int @id @default(autoincrement())
   taskName String 
   taskText String      
-  status Values 
+  status Boolean @default(false) 
   creationDate DateTime @default(now())
-}
-
-enum Values {
-  DONE
-  PENDING
 }
